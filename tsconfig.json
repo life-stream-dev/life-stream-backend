@@ -1,0 +1,39 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "strict": true,
+        "verbatimModuleSyntax": true,
+        "skipLibCheck": true,
+        "types": [
+            "node"
+        ],
+        "jsx": "react-jsx",
+        "jsxImportSource": "hono/jsx",
+        "outDir": "./dist",
+        "rootDirs": [
+            "./src"
+        ],
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "resolvePackageJsonExports": true,
+        "inlineSourceMap": true,
+        "baseUrl": "./src",
+        "experimentalDecorators": true,
+        "paths": {
+            "@config/*": [
+                "../config/*"
+            ],
+            "@/*": [
+                "./*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "logs",
+        "config"
+    ]
+}
