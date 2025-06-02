@@ -1,0 +1,37 @@
+{
+    "version": "1.0.0",
+    "database": {
+        "config": {
+            "host": "127.0.0.1",
+            "port": 3306,
+            "user": "root",
+            "password": "123456",
+            "database": "life-stream",
+            "connectTimeout": 500,
+            "connectionLimit": 20
+        },
+        "updateTime": 5,
+        "prefix": "backend"
+    },
+    "https": {
+        "enable": false,
+        "enableHSTS": false,
+        "keyPath": "certificate/certificate.key",
+        "crtPath": "certificate/certificate.crt"
+    },
+    "cookie": {
+        "key": "123456",
+        "timeout": 1200000
+    },
+    "callLimit": {
+        "count": 100,
+        "time": 1000
+    },
+    "jwt": {
+        "secretKey": "123456",
+        "expiresIn": "1h",
+        "refreshTokenExpiresIn": "1d"
+    },
+    "homePage": "https://www.baidu.com",
+    "port": 80
+}

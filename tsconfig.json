@@ -3,18 +3,13 @@
         "target": "ESNext",
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
-        "strict": true,
-        "verbatimModuleSyntax": true,
-        "skipLibCheck": true,
-        "types": [
-            "node"
-        ],
-        "jsx": "react-jsx",
-        "jsxImportSource": "hono/jsx",
         "outDir": "./dist",
         "rootDirs": [
             "./src"
         ],
+        "strict": true,
+        "verbatimModuleSyntax": true,
+        "skipLibCheck": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "resolveJsonModule": true,
@@ -23,17 +18,20 @@
         "baseUrl": "./src",
         "experimentalDecorators": true,
         "paths": {
-            "@config/*": [
-                "../config/*"
-            ],
             "@/*": [
                 "./*"
+            ],
+            "@root/*": [
+                "../*"
             ]
         }
     },
+    "include": [
+        "src"
+    ],
     "exclude": [
-        "node_modules",
-        "logs",
-        "config"
+        "./node_modules",
+        "./logs",
+        "./config"
     ]
 }

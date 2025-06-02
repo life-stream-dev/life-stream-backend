@@ -1,18 +1,51 @@
 {
-  "name": "life-stream-backend",
-  "type": "module",
-  "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js"
-  },
-  "dependencies": {
-    "@hono/node-server": "^1.14.2",
-    "hono": "^4.7.10"
-  },
-  "devDependencies": {
-    "@types/node": "^20.17.50",
-    "tsx": "^4.7.1",
-    "typescript": "^5.8.3"
-  }
+    "name": "life-stream-backend",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "tsx watch src/main.ts",
+        "build": "tsc -p . && tsc-alias",
+        "start": "node dist/src/main.js",
+        "start:build": "tsc -p . && tsc-alias && node dist/main.js",
+        "build:docker": "docker build -t pigeon-server-sbi:latest .",
+        "start:docker-nodaemon": "docker compose up",
+        "start:docker": "docker compose up -d",
+        "stop:docker": "docker compose stop",
+        "update": "git checkout main && git pull && npm run start:build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/life-stream-dev/life-stream-backend.git"
+    },
+    "keywords": [
+        "nodejs",
+        "express"
+    ],
+    "author": "Half_nothing",
+    "license": "GPL-3.0-or-later",
+    "bugs": {
+        "url": "https://github.com/life-stream-dev/life-stream-backend/issues"
+    },
+    "homepage": "https://github.com/life-stream-dev/life-stream-backend#readme",
+    "devDependencies": {
+        "@types/cors": "^2.8.18",
+        "@types/express": "^5.0.2",
+        "@types/express-session": "^1.18.1",
+        "@types/node": "^20.17.50",
+        "tsc-alias": "^1.8.16",
+        "tsx": "^4.19.4",
+        "typescript": "^5.8.3"
+    },
+    "dependencies": {
+        "@hono/node-server": "^1.14.2",
+        "cors": "^2.8.5",
+        "express": "^5.1.0",
+        "express-session": "^1.18.1",
+        "log4js": "^6.9.1",
+        "moment-timezone": "^0.6.0",
+        "string-random": "^0.1.3"
+    },
+    "engines": {
+        "node": ">=20"
+    }
 }
