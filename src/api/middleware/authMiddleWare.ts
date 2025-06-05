@@ -57,6 +57,7 @@ export namespace AuthMiddleware {
                     status: true,
                     message: "JWT Token 刷新成功",
                     data: {
+                        userId: data.userId,
                         username: data.username,
                         tokenExpiresIn: translateTime(config.jwt.expiresIn),
                         token: generateJWTToken({

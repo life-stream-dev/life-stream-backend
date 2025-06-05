@@ -8,6 +8,7 @@ type ApiResponse<T> = {
 }
 
 type JwtData = {
+    readonly userId: number,
     readonly username: string,
     readonly permission: number,
     readonly type?: string,
@@ -18,6 +19,7 @@ type JwtData = {
 }
 
 type AuthInfo = {
+    readonly userId: number,
     readonly username: string,
     readonly tokenExpiresIn: number,
     readonly token: string,

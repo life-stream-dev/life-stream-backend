@@ -5,6 +5,7 @@ import {dbLogger} from "@/utils/logger.js";
 import {ServerLifeCycle, ServerLifeCycleEvent} from "@/utils/lifeCycle.js";
 import process from "node:process";
 import {User} from "@/database/model/user.js";
+import {Article} from "@/database/model/article.js";
 
 export namespace Database {
     export const database = new Sequelize({
@@ -16,7 +17,7 @@ export namespace Database {
         logging: (sql: string) => {
             dbLogger.debug(sql);
         },
-        models: [User]
+        models: [User, Article]
     });
 
     export function initDatabase() {
@@ -35,22 +36,5 @@ export namespace Database {
             dbLogger.error(err.message);
             process.exit(-1);
         });
-    }
-
-    export function createUser(user: CreateUser) {
-        return User.create({
-            username: user.username,
-            password: user.password,
-            salt: user.salt,
-            email: user.email
-        })
-    }
-
-    export function getUserByUsername(username: string) {
-        return User.findOne({
-            where: {
-                username: username
-            }
-        })
     }
 }

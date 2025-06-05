@@ -27,6 +27,10 @@ export namespace CommonMiddleWare {
             } as ApiResponse<null>);
             return
         }
-        res.status(HttpCode.InternalServerError).send("Server Error!");
+        res.status(HttpCode.InternalServerError).json({
+            status: false,
+            message: "Internal Server Error",
+            data: null
+        } as ApiResponse<null>);
     };
 }

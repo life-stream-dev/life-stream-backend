@@ -4,9 +4,11 @@ import {
     Attribute,
     AutoIncrement,
     CreatedAt,
+    DeletedAt,
     NotNull,
     PrimaryKey,
     Table,
+    Unique,
     UpdatedAt
 } from "@sequelize/core/decorators-legacy";
 import {config} from "@/config/index.js";
@@ -16,6 +18,7 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
     @Attribute(DataTypes.INTEGER)
     @PrimaryKey
     @AutoIncrement
+    @Unique
     @NotNull
     declare id?: CreationOptional<number>;
 
@@ -45,4 +48,27 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
     @NotNull
     @UpdatedAt
     declare lastLoginTime?: CreationOptional<Date>;
+
+    @Attribute(DataTypes.DATE)
+    @DeletedAt
+    declare deleted?: Date;
+}
+
+export namespace UserModel {
+    export function createUser(user: CreateUser) {
+        return User.create({
+            username: user.username,
+            password: user.password,
+            salt: user.salt,
+            email: user.email
+        })
+    }
+
+    export function getUserByUsername(username: string) {
+        return User.findOne({
+            where: {
+                username: username
+            }
+        })
+    }
 }
