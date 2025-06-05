@@ -1,49 +1,49 @@
 type DatabaseConfig = {
-    host: string;
-    port: number;
-    user: string;
-    password: string;
-    database: string;
-    connectTimeout: number;
-    connectionLimit: number;
+    readonly host: string;
+    readonly port: number;
+    readonly user: string;
+    readonly password: string;
+    readonly database: string;
+    readonly connectTimeout: number;
+    readonly connectionLimit: number;
 }
 
 type Database = {
-    config: DatabaseConfig;
-    updateTime: number;
-    prefix: string;
+    readonly config: DatabaseConfig;
+    readonly updateTime: number;
+    readonly prefix: string;
 }
 
 type HttpsConfig = {
-    enable: boolean;
-    enableHSTS: boolean;
-    keyPath: string;
-    crtPath: string;
+    readonly enable: boolean;
+    readonly enableHSTS: boolean;
+    readonly keyPath: string;
+    readonly crtPath: string;
 }
 
 type CookieConfig = {
-    key: string;
-    timeout: number;
+    readonly key: string;
+    readonly timeout: number;
 }
 
 type CallLimitConfig = {
-    count: number;
-    time: number;
+    readonly count: number;
+    readonly time: number;
 }
 
 type JwtConfig = {
-    secretKey: string;
-    expiresIn: string;
-    refreshTokenExpiresIn: string;
+    readonly secretKey: string;
+    readonly expiresIn: string;
+    readonly refreshTokenExpiresIn: string;
 }
 
 type Config = {
-    version: string;
-    database: Database;
-    https: HttpsConfig;
-    cookie: CookieConfig;
-    callLimit: CallLimitConfig;
-    jwt: JwtConfig;
-    homePage: string;
-    port: number;
+    readonly version: string;
+    readonly database: Database;
+    readonly https: HttpsConfig;
+    readonly cookie: CookieConfig;
+    readonly callLimit: CallLimitConfig;
+    readonly jwt: JwtConfig;
+    readonly homePage: string;
+    readonly port: number;
 } 

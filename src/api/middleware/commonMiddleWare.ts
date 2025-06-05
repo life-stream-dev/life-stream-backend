@@ -2,6 +2,7 @@ import type {NextFunction, Request, Response} from "express";
 import {logger} from "@/utils/logger.js";
 import {config} from "@/config/index.js";
 import {HttpCode} from "@/utils/httpCode.js";
+import {RequestError} from "@/error/requestError.js";
 
 export namespace CommonMiddleWare {
     export const enableHSTS = (_: Request, res: Response, next: NextFunction) => {
@@ -18,6 +19,14 @@ export namespace CommonMiddleWare {
 
     export const errorHandler = (err: Error, _: Request, res: Response, __: NextFunction) => {
         logger.error(`Error handler request: ${err.message}`);
+        if (err instanceof RequestError) {
+            res.status(err.statusCode).json({
+                status: false,
+                message: err.message,
+                data: null
+            } as ApiResponse<null>);
+            return
+        }
         res.status(HttpCode.InternalServerError).send("Server Error!");
     };
 }

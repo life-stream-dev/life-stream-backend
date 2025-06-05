@@ -48,7 +48,7 @@ export class MainConfig extends BaseConfig<Config> {
                     "port": 3306,
                     "user": "root",
                     "password": "123456",
-                    "database": "life-stream",
+                    "database": "life",
                     "connectTimeout": 500,
                     "connectionLimit": 20
                 },

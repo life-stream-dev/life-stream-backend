@@ -9,14 +9,16 @@ import https from "https";
 import http from "http";
 import {initCatcher} from "@/utils/catcher.js";
 import {FileUtils} from "@/utils/fileUtils.js";
-import checkFileExist = FileUtils.checkFileExist;
 import {ServerLifeCycle, ServerLifeCycleEvent} from "@/utils/lifeCycle.js";
 import {config} from "@/config/index.js";
-import {CommonMiddleWare} from "@/middleware/commonMiddleWare.js";
-
+import {CommonMiddleWare} from "@/api/middleware/commonMiddleWare.js";
+import {Database} from "@/database/database.js";
+import checkFileExist = FileUtils.checkFileExist;
+import initDatabase = Database.initDatabase;
+import {authApiRouter} from "@/api/router/authApi.js";
 
 initCatcher();
-// initDatabase();
+initDatabase();
 
 const app = express();
 
@@ -44,6 +46,8 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
+app.use("/api/auth", authApiRouter);
 
 app.use((_: Request, res: Response) => {
     logger.info(`Not router match, redirect to home page ${config.homePage}`);
