@@ -46,7 +46,7 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
 
     @Attribute(DataTypes.DATE)
     @NotNull
-    @UpdatedAt
+    @UpdatedAt()
     declare lastLoginTime?: CreationOptional<Date>;
 
     @Attribute(DataTypes.DATE)
@@ -55,12 +55,34 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
 }
 
 export namespace UserModel {
+    export function getUsers() {
+        return User.findAll({
+            attributes: {
+                exclude: [
+                    "deleted",
+                    "salt",
+                    "password"
+                ]
+            }
+        })
+    }
+
     export function createUser(user: CreateUser) {
         return User.create({
             username: user.username,
             password: user.password,
             salt: user.salt,
             email: user.email
+        })
+    }
+
+    export function updateUserLoginTime(userId: number) {
+        return User.update({
+            lastLoginTime: new Date()
+        }, {
+            where: {
+                id: userId
+            }
         })
     }
 

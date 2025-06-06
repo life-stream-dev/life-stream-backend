@@ -59,13 +59,12 @@ export class Article extends Model<InferAttributes<Article>, InferCreationAttrib
 }
 
 export namespace ArticleModel {
-    export function getArticlesByAuthorId(authorId: number) {
+    export function getArticles() {
         return Article.findAll({
-            where: {
-                authorId: authorId
-            },
             attributes: {
                 exclude: [
+                    "authorId",
+                    "editTime",
                     "deleted"
                 ]
             }

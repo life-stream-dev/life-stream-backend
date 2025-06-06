@@ -4,8 +4,8 @@ import {ParamMismatchError} from "@/error/requestError.js";
 import {newServiceReturn} from "@/api/utils/service.js";
 
 export namespace BlogService {
-    export const getArticles = async (authorId: number): Promise<ServiceReturn<Article[]>> => {
-        return newServiceReturn(HttpCode.OK, true, "", await ArticleModel.getArticlesByAuthorId(authorId))
+    export const getArticles = async (): Promise<ServiceReturn<Article[]>> => {
+        return newServiceReturn(HttpCode.OK, true, "", await ArticleModel.getArticles())
     }
 
     export const getArticle = async (articleId?: number): Promise<ServiceReturn<Article | null>> => {

@@ -8,10 +8,10 @@ export const blogApiRouter = express.Router();
 blogApiRouter.use(BlogMiddleWare.checkCallLimit)
 
 blogApiRouter.get("/articles", BlogApiController.getArticles)
+blogApiRouter.get("/articles/:id", BlogApiController.getArticle)
 
 blogApiRouter.use(AuthMiddleware.requestLogin)
 
-blogApiRouter.get("/articles/:id", BlogApiController.getArticle)
 blogApiRouter.post("/articles", BlogApiController.createArticle)
 blogApiRouter.put("/articles/:id", BlogApiController.updateArticle)
 blogApiRouter.delete("/articles/:id", BlogApiController.deleteArticle)

@@ -15,6 +15,8 @@ export namespace AuthService {
     import generateKey = Utils.generateKey;
     import getUserByUsername = UserModel.getUserByUsername;
     import createUser = UserModel.createUser;
+    import getUsers = UserModel.getUsers;
+    import updateUserLoginTime = UserModel.updateUserLoginTime;
 
     export const generateJWTToken = (payload: object) => {
         return jwt.sign(payload, config.jwt.secretKey,
@@ -32,14 +34,20 @@ export namespace AuthService {
             username: account.username,
             tokenExpiresIn: translateTime(config.jwt.expiresIn),
             token: generateJWTToken({
+                userId: (account instanceof User ? account.id : account.userId)!!,
                 username: account.username
             }),
             refreshToken: generateJWTToken({
+                userId: (account instanceof User ? account.id : account.userId)!!,
                 username: account.username,
                 type: "refresh"
             })
         };
     };
+
+    export const getAllUser = async (): Promise<ServiceReturn<User[]>> => {
+        return newServiceReturn(HttpCode.OK, true, "", await getUsers())
+    }
 
     export const login = async (username?: string, password?: string): Promise<ServiceReturn<AuthInfo>> => {
         if (username === undefined || password === undefined) {
@@ -49,6 +57,7 @@ export namespace AuthService {
         if (data === null) {
             throw new ParamMismatchError("指定用户名不存在或密码错误");
         }
+        await updateUserLoginTime(data.id!!);
         api.debug(`User(${username}) request login with password: ${password}, salt: ${data.salt}`);
         const passwordWithSalt = encryptPassword(password, data.salt);
         if (data.password === passwordWithSalt) {

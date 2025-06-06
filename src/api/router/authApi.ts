@@ -6,6 +6,7 @@ export const authApiRouter = express.Router();
 
 authApiRouter.use(AuthMiddleware.checkCallLimit);
 
+authApiRouter.get("/users", AuthApiController.getAllUser);
 authApiRouter.post("/login", AuthApiController.userLogin);
 authApiRouter.post("/register", AuthApiController.createAccount);
 
