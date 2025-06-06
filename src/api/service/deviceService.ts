@@ -17,7 +17,9 @@ export namespace DeviceService {
             devices.set(device.DevicesId, "")
         }
         for (const device of stored) {
-            devices.set(device.deviceId, device.deviceName)
+            if (devices.has(device.deviceId)) {
+                devices.set(device.deviceId, device.deviceName)
+            }
         }
         const devicesList: DeviceInfo[] = []
         for (const [k, v] of devices.entries()) {
