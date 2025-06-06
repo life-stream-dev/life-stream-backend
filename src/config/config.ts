@@ -74,6 +74,7 @@ export class MainConfig extends BaseConfig<Config> {
                 "expiresIn": "1h",
                 "refreshTokenExpiresIn": "1d"
             },
+            "grpc": "127.0.0.1:9090",
             "homePage": "https://www.baidu.com",
             "port": 80
         };

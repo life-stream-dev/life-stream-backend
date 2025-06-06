@@ -38,6 +38,8 @@
         "typescript": "^5.8.3"
     },
     "dependencies": {
+        "@grpc/grpc-js": "^1.13.4",
+        "@grpc/proto-loader": "^0.7.15",
         "@sequelize/core": "^7.0.0-alpha.46",
         "@sequelize/mysql": "^7.0.0-alpha.46",
         "cors": "^2.8.5",

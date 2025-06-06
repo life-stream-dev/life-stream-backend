@@ -17,6 +17,7 @@ import checkFileExist = FileUtils.checkFileExist;
 import initDatabase = Database.initDatabase;
 import {authApiRouter} from "@/api/router/authApi.js";
 import {blogApiRouter} from "@/api/router/blogApi.js";
+import {deviceApiRouter} from "@/api/router/deviceApi.js";
 
 initCatcher();
 initDatabase();
@@ -50,6 +51,7 @@ app.use(session({
 
 app.use("/api/auth", authApiRouter);
 app.use("/api/blog", blogApiRouter);
+app.use("/api/device", deviceApiRouter);
 
 app.use((_: Request, res: Response) => {
     logger.info(`Not router match, redirect to home page ${config.homePage}`);

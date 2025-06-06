@@ -46,4 +46,5 @@ type Config = {
     readonly jwt: JwtConfig;
     readonly homePage: string;
     readonly port: number;
+    readonly grpc: string;
 } 

@@ -30,3 +30,8 @@ type ServiceReturn<T> = {
     readonly code: number,
     readonly response: ApiResponse<T>
 }
+
+type DeviceInfo = {
+    readonly deviceId: string,
+    readonly deviceName?: string
+}
